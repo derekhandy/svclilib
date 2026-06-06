@@ -1,4 +1,4 @@
-package golangcli
+package svclilib
 
 type Environment struct {
 	Header   string

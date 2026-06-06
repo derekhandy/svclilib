@@ -1,4 +1,4 @@
-package golangcli
+package svclilib
 
 import "fmt"
 
