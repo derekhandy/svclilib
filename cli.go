@@ -32,7 +32,7 @@ type Environment struct {
 //	Summary:
 //
 //		Use "" as string for func(args []string) (error, string)
-// 		return parameter to prevent Logr() from printing.
+// 		return parameter to prevent Printr() from printing.
 //
 //		Example: return nil, ""
 //
@@ -44,33 +44,33 @@ type Command struct {
 }
 
 func Execute(env Environment, args []string) {
-	Logh(env)
+	Printh(env)
 
 	RunCommand(env, args)
 
-	Logf(env)
+	Printf(env)
 }
 
 func RunCommand(env Environment, args []string) {
 	if len(args) == 0 {
-		Logm(env, "Error: No command provided")
+		Printm(env, "Error: No command provided")
 		return
 	}
 
-	Logc(env, args)
+	Printc(env, args)
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
 			if len(args) < command.ArgRequired+1 {
-				Logm(env, "Error: Not enough arguments for command "+command.Name)
+				Printm(env, "Error: Not enough arguments for command "+command.Name)
 			} else if err := command.Function(args[1:]); err != nil {
-				Logm(env, "Error: "+err.Error())
+				Printm(env, "Error: "+err.Error())
 			} /* else if !env.Silent {
-				Logr(env)
+				Printr(env)
 			}*/
 			return
 		}
 	}
 
-	Logm(env, "Error: Unknown command "+args[0])
+	Printm(env, "Error: Unknown command "+args[0])
 }
