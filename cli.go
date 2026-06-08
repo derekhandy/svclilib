@@ -40,7 +40,7 @@ type Command struct {
 	Name        string
 	Desc        string
 	ArgRequired int
-	Function    func(args []string) (error, string)
+	Function    func(args []string) error
 }
 
 func Execute(env Environment, args []string) {
@@ -63,11 +63,11 @@ func RunCommand(env Environment, args []string) {
 		if command.Name == args[0] {
 			if len(args) < command.ArgRequired+1 {
 				Logm(env, "Error: Not enough arguments for command "+command.Name)
-			} else if err, out := command.Function(args[1:]); err != nil {
+			} else if err := command.Function(args[1:]); err != nil {
 				Logm(env, "Error: "+err.Error())
-			} else if !env.Silent {
-				Logr(env, out)
-			}
+			} /* else if !env.Silent {
+				Logr(env)
+			}*/
 			return
 		}
 	}
