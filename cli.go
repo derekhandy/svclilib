@@ -58,6 +58,7 @@ func RunCommand(env Environment, args []string) {
 	}
 
 	Logc(env, args)
+	println()
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
