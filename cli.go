@@ -3,6 +3,7 @@ package svclilib
 type Environment struct {
 	Header     string
 	Prefix     string
+	Footer     string
 	Spacing    string
 	Commands   []Command
 	LogSuccess bool
@@ -15,25 +16,31 @@ type Command struct {
 }
 
 func CMD(env Environment, args []string) {
+	PRINTH(env)
+
+	RunCommand(env, args)
+
+	PRINTF(env)
+}
+
+func RunCommand(env Environment, args []string) {
 	if len(args) == 0 {
-		PRINT(env, "Error: No command provided")
+		PRINTM(env, "Error: No command provided")
 		return
 	}
+
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
 			if len(args) < command.ArgRequired+1 {
-				PRINT(env, "Error: Not enough arguments for command "+command.Name)
-				return
-			}
-			if err := command.Function(args[1:]); err != nil {
-				PRINT(env, "Error: "+err.Error())
-				return
-			}
-			if env.LogSuccess {
-				PRINT(env, "Command "+command.Name+" executed successfully")
+				PRINTM(env, "Error: Not enough arguments for command "+command.Name)
+			} else if err := command.Function(args[1:]); err != nil {
+				PRINTM(env, "Error: "+err.Error())
+			} else if env.LogSuccess {
+				PRINTM(env, "Command "+command.Name+" executed successfully")
 			}
 			return
 		}
 	}
-	PRINT(env, "Error: Unknown command "+args[0])
+
+	PRINTM(env, "Error: Unknown command "+args[0])
 }
