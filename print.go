@@ -22,12 +22,27 @@ func Logc(env Environment, args []string) {
 	fmt.Println(env.Glyphs[0] + " " + strings.Join(args, ", "))
 }
 
-func Logr(env Environment, output string) {
-	normalized := strings.ReplaceAll(output, "\r\n", "\n")
+func Logr(env Environment, out string) {
+	if out == "" {
+		return
+	}
+	normalized := strings.ReplaceAll(out, "\r\n", "\n")
 	Log := strings.Split(normalized, "\n")
 
 	for i := 0; i < len(Log); i++ {
 		fmt.Println(env.Glyphs[1] + " " + Log[0])
+	}
+}
+
+func Logu(env Environment, cmds []Command) {
+	format := env.UsageFormat
+
+	for i := 0; i < len(cmds); i++ {
+		usage := format
+		usage = strings.ReplaceAll(usage, "{name}", cmds[i].Name)
+		usage = strings.ReplaceAll(usage, "{desc}", cmds[i].Desc)
+		usage = strings.ReplaceAll(usage, "{prefix}", env.Prefix)
+		usage = strings.ReplaceAll(usage, "{spacing}", env.Spacing)
 	}
 }
 

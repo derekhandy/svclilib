@@ -18,17 +18,27 @@ package svclilib
 //		Silent		Only prints error Logs.
 //
 type Environment struct {
-	Header   string
-	Prefix   string
-	Footer   string
-	Glyphs   []string
-	Spacing  string
-	Commands []Command
-	Silent   bool
+	Header      string
+	Prefix      string
+	Footer      string
+	Glyphs      []string
+	Spacing     string
+	Commands    []Command
+	Silent      bool
+	UsageFormat string
 }
 
+//
+//	Summary:
+//
+//		Use "" as string for func(args []string) (error, string)
+// 		return parameter to prevent Logr() from printing.
+//
+//		Example: return nil, ""
+//
 type Command struct {
 	Name        string
+	Desc        string
 	ArgRequired int
 	Function    func(args []string) (error, string)
 }
