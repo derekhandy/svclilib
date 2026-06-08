@@ -6,7 +6,7 @@ package svclilib
 //		Header		Prints before a command is called. Acts as task start identifier.
 //		Prefix		Prefix before any message is printed excluding header and footer.
 //		Footer		Prints after a command is executed. Acts as task end identifier.
-//		Glyphs		Input and output prefixes for command execution Logs.
+//		Glyphs		Input, line spacing, and output prefixes for command execution Logs.
 //
 //		Spacing		Spacing string used to separate:
 // 						- Console output from header
@@ -58,7 +58,7 @@ func RunCommand(env Environment, args []string) {
 	}
 
 	Logc(env, args)
-	println()
+	Logv(env)
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
