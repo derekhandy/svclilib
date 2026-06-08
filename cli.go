@@ -31,7 +31,7 @@ func RunCommand(env Environment, args []string) {
 		return
 	}
 
-	PRINTM(env, strings.Join(args, ""))
+	PRINTM(env, strings.Join(args))
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
