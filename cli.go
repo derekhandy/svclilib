@@ -29,7 +29,9 @@ func CMD(env Environment, args []string) {
 				PRINT(env, "Error: "+err.Error())
 				return
 			}
-			PRINT(env, "Command "+command.Name+" executed successfully")
+			if env.LogSuccess {
+				PRINT(env, "Command "+command.Name+" executed successfully")
+			}
 			return
 		}
 	}
