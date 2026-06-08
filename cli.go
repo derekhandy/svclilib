@@ -43,7 +43,7 @@ type Command struct {
 	Function    func(args []string) (error, string)
 }
 
-func Exec(env Environment, args []string) {
+func Execute(env Environment, args []string) {
 	Logh(env)
 
 	RunCommand(env, args)
