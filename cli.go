@@ -1,5 +1,7 @@
 package svclilib
 
+import "strings"
+
 type Environment struct {
 	Header     string
 	Prefix     string
@@ -28,6 +30,8 @@ func RunCommand(env Environment, args []string) {
 		PRINTM(env, "Error: No command provided")
 		return
 	}
+
+	PRINTM(env, strings.Join(args, ""))
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
