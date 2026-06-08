@@ -6,12 +6,10 @@ import (
 )
 
 func Logh(env Environment) {
-	fmt.Print(env.Spacing)
 	if env.Header != "" {
 		fmt.Print(env.Header)
 		fmt.Print(env.Spacing)
 	}
-	fmt.Print(env.Spacing)
 }
 
 func Logm(env Environment, text string) {
@@ -55,7 +53,5 @@ func Logu(env Environment, cmds []Command) {
 }
 
 func Logf(env Environment) {
-	fmt.Print(env.Spacing)
 	fmt.Print(env.Footer)
-	fmt.Print(env.Spacing)
 }
