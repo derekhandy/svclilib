@@ -1,8 +1,11 @@
 package svclilib
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-func PRINTH(env Environment) {
+func Logh(env Environment) {
 	fmt.Print(env.Spacing)
 	if env.Header != "" {
 		fmt.Print(env.Header)
@@ -11,11 +14,24 @@ func PRINTH(env Environment) {
 	fmt.Print(env.Spacing)
 }
 
-func PRINTM(env Environment, text string) {
+func Logm(env Environment, text string) {
 	fmt.Println(env.Prefix + " " + text)
 }
 
-func PRINTF(env Environment) {
+func Logc(env Environment, args []string) {
+	fmt.Println(env.Glyphs[0] + " " + strings.Join(args, ", "))
+}
+
+func Logr(env Environment, output string) {
+	normalized := strings.ReplaceAll(output, "\r\n", "\n")
+	Log := strings.Split(normalized, "\n")
+
+	for i := 0; i < len(Log); i++ {
+		fmt.Println(env.Glyphs[1] + " " + Log[0])
+	}
+}
+
+func Logf(env Environment) {
 	fmt.Print(env.Spacing)
 	fmt.Print(env.Footer)
 	fmt.Print(env.Spacing)
