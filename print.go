@@ -19,7 +19,7 @@ func Logm(env Environment, text string) {
 }
 
 func Logc(env Environment, args []string) {
-	fmt.Println(env.Glyphs[0] + " " + strings.Join(args, ", "))
+	fmt.Println(env.Glyphs[0] + " " + strings.Join(args, " "))
 }
 
 func Logr(env Environment, out string) {
@@ -30,7 +30,10 @@ func Logr(env Environment, out string) {
 	log := strings.Split(normalized, "\n")
 
 	for i := 0; i < len(log); i++ {
-		fmt.Println(env.Glyphs[1] + " " + log[0])
+		if log[i] == "" {
+			continue
+		}
+		fmt.Println(env.Glyphs[1] + " " + log[i])
 	}
 }
 
