@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func Printh(env Environment) {
+func Logh(env Environment) {
 	fmt.Print(env.Spacing)
 	if env.Header != "" {
 		fmt.Print(env.Header)
@@ -14,27 +14,45 @@ func Printh(env Environment) {
 	fmt.Print(env.Spacing)
 }
 
-func Printm(env Environment, text string) {
+func Logm(env Environment, text string) {
 	fmt.Println(env.Prefix + " " + text)
 }
 
-func Printc(env Environment, args []string) {
+func Logc(env Environment, args []string) {
 	fmt.Println(env.Glyphs[0] + " " + strings.Join(args, ", "))
 }
 
-func Printu(env Environment, cmds []Command) {
-	// format := env.UsageFormat
+func Logr(env Environment, out string) {
+	if out == "" {
+		return
+	}
+	normalized := strings.ReplaceAll(out, "\r\n", "\n")
+	log := strings.Split(normalized, "\n")
 
-	// for i := 0; i < len(cmds); i++ {
-	// 	usage := format
-	// 	usage = strings.ReplaceAll(usage, "{name}", cmds[i].Name)
-	// 	usage = strings.ReplaceAll(usage, "{desc}", cmds[i].Desc)
-	// 	usage = strings.ReplaceAll(usage, "{prefix}", env.Prefix)
-	// 	usage = strings.ReplaceAll(usage, "{spacing}", env.Spacing)
-	// }
+	for i := 0; i < len(log); i++ {
+		fmt.Println(env.Glyphs[1] + " " + log[0])
+	}
 }
 
-func Printf(env Environment) {
+func Logu(env Environment, cmds []Command) {
+	format := env.UsageFormat
+
+	for i := 0; i < len(cmds); i++ {
+		//basic test
+		usage := format
+		prevUsage := usage
+		usage = strings.ReplaceAll(prevUsage, "{name}", cmds[i].Name)
+		prevUsage = usage
+		usage = strings.ReplaceAll(prevUsage, "{desc}", cmds[i].Desc)
+		prevUsage = usage
+		usage = strings.ReplaceAll(prevUsage, "{prefix}", env.Prefix)
+		prevUsage = usage
+		usage = strings.ReplaceAll(prevUsage, "{spacing}", env.Spacing)
+		prevUsage = usage
+	}
+}
+
+func Logf(env Environment) {
 	fmt.Print(env.Spacing)
 	fmt.Print(env.Footer)
 	fmt.Print(env.Spacing)
