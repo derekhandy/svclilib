@@ -9,6 +9,7 @@ func PRINT(env Environment, text string) {
 		fmt.Print(env.Spacing)
 	}
 	fmt.Print(env.Prefix + " " + text)
+	fmt.Print(env.Spacing)
 }
 
 func PRINTM(env Environment, text string, hasInput bool) {
