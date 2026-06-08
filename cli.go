@@ -1,9 +1,11 @@
 package svclilib
 
 type Environment struct {
-	Header   string
-	Prefix   string
-	Commands []Command
+	Header     string
+	Prefix     string
+	Spacing    string
+	Commands   []Command
+	LogSuccess bool
 }
 
 type Command struct {

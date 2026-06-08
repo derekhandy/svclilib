@@ -3,17 +3,19 @@ package svclilib
 import "fmt"
 
 func PRINT(env Environment, text string) {
-	fmt.Println()
+	fmt.Print(env.Spacing)
 	if env.Header != "" {
-		fmt.Println(env.Header)
-		fmt.Println()
+		fmt.Print(env.Header)
+		fmt.Print(env.Spacing)
 	}
-	fmt.Println(env.Prefix + " " + text)
+	fmt.Print(env.Prefix + " " + text)
 }
 
 func PRINTM(env Environment, text string, hasInput bool) {
-	fmt.Println(env.Prefix + " " + text)
+	fmt.Print(env.Spacing)
+	fmt.Print(env.Prefix + " " + text)
 	if hasInput {
+		fmt.Print(env.Spacing)
 		fmt.Print(env.Prefix + " ")
 	}
 }
