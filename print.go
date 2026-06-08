@@ -38,17 +38,12 @@ func Logu(env Environment, cmds []Command) {
 	format := env.UsageFormat
 
 	for i := 0; i < len(cmds); i++ {
-		//basic test
 		usage := format
-		prevUsage := usage
-		usage = strings.ReplaceAll(prevUsage, "{name}", cmds[i].Name)
-		prevUsage = usage
-		usage = strings.ReplaceAll(prevUsage, "{desc}", cmds[i].Desc)
-		prevUsage = usage
-		usage = strings.ReplaceAll(prevUsage, "{prefix}", env.Prefix)
-		prevUsage = usage
-		usage = strings.ReplaceAll(prevUsage, "{spacing}", env.Spacing)
-		prevUsage = usage
+		usage = strings.ReplaceAll(usage, "{name}", cmds[i].Name)
+		usage = strings.ReplaceAll(usage, "{desc}", cmds[i].Desc)
+		usage = strings.ReplaceAll(usage, "{prefix}", env.Prefix)
+		usage = strings.ReplaceAll(usage, "{spacing}", env.Spacing)
+		fmt.Println(usage)
 	}
 }
 
