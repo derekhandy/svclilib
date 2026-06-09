@@ -1,5 +1,5 @@
 //
-//												svclilib @ v1.4.8
+//												svclilib @ v1.4.9
 //
 //									MIT License, Copyright (c) 2026 Derek Handy
 //							Project can be found at: https://github.com/derekhandy/svclilib
@@ -7,19 +7,17 @@
 
 package svclilib
 
+// Summary:
 //
-//	Summary:
-//
-//		Header		Prints before a command is called. Acts as task start identifier.
-//		Prefix		Prefix before any message is printed excluding header and footer.
-//		Footer		Prints after a command is executed. Acts as task end identifier.
-//		Glyphs		Input, line spacing, and output prefixes for command execution Logs.
-//		Spacing		Spacing string used to separate header, messages, footer,
-//					and continuing console output.
-//		Commands	List of functions that can be called by name.
-//		Silent		Only prints error Logs.
-//		REPL		Supresses certain logs to give app more control.
-//
+//	Header		Prints before a command is called. Acts as task start identifier.
+//	Prefix		Prefix before any message is printed excluding header and footer.
+//	Footer		Prints after a command is executed. Acts as task end identifier.
+//	Glyphs		Input, line spacing, and output prefixes for command execution Logs.
+//	Spacing		Spacing string used to separate header, messages, footer,
+//				and continuing console output.
+//	Commands	List of functions that can be called by name.
+//	Silent		Only prints error Logs.
+//	REPL		Supresses certain logs to give app more control.
 type Environment struct {
 	Header      string
 	Prefix      string
@@ -31,14 +29,12 @@ type Environment struct {
 	REPL        bool
 }
 
+// Summary:
 //
-//	Summary:
+//	Use "" as string for func(args []string) (error, string)
+//	return parameter to prevent Logr() from printing.
 //
-//		Use "" as string for func(args []string) (error, string)
-// 		return parameter to prevent Logr() from printing.
-//
-//		Example: return nil, ""
-//
+//	Example: return nil, ""
 type Command struct {
 	Name        string
 	Desc        string
@@ -47,11 +43,9 @@ type Command struct {
 	Function    func(args []string) (error, string)
 }
 
+// Summary:
 //
-//	Summary:
-//
-//		Main function
-//
+//	Main function
 func Execute(env Environment, args []string) {
 	if !env.REPL {
 		Logh(env)
