@@ -1,3 +1,10 @@
+//
+//												svclilib @ v1.4.8
+//
+//									MIT License, Copyright (c) 2026 Derek Handy
+//							Project can be found at: https://github.com/derekhandy/svclilib
+//
+
 package svclilib
 
 //
@@ -7,15 +14,11 @@ package svclilib
 //		Prefix		Prefix before any message is printed excluding header and footer.
 //		Footer		Prints after a command is executed. Acts as task end identifier.
 //		Glyphs		Input, line spacing, and output prefixes for command execution Logs.
-//
-//		Spacing		Spacing string used to separate:
-// 						- Console output from header
-// 						- Header from message
-//						- Message from footer
-//						- Footer from continuing console
-//
+//		Spacing		Spacing string used to separate header, messages, footer,
+//					and continuing console output.
 //		Commands	List of functions that can be called by name.
 //		Silent		Only prints error Logs.
+//		REPL		Supresses certain logs to give app more control.
 //
 type Environment struct {
 	Header      string
@@ -44,6 +47,11 @@ type Command struct {
 	Function    func(args []string) (error, string)
 }
 
+//
+//	Summary:
+//
+//		Main function
+//
 func Execute(env Environment, args []string) {
 	if !env.REPL {
 		Logh(env)
