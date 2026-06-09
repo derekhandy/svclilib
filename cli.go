@@ -1,5 +1,5 @@
 //
-//												svclilib @ v1.4.9
+//												svclilib @ v1.5.0
 //
 //									MIT License, Copyright (c) 2026 Derek Handy
 //							Project can be found at: https://github.com/derekhandy/svclilib
