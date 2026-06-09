@@ -54,7 +54,7 @@ func Execute(env Environment, args []string) {
 
 func RunCommand(env Environment, args []string) {
 	if len(args) == 0 {
-		Logr(env, "[Error] No command provided")
+		Logr(env, "ERROR No command provided")
 		Logv(env)
 		return
 	}
@@ -65,10 +65,10 @@ func RunCommand(env Environment, args []string) {
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
 			if len(args) < command.ArgRequired+1 {
-				Logr(env, "[Error] Not enough arguments for command "+command.Name)
+				Logr(env, "ERROR Not enough arguments for command "+command.Name)
 				Logv(env)
 			} else if err, out := command.Function(args[1:]); err != nil {
-				Logr(env, "[Error] "+err.Error())
+				Logr(env, "ERROR "+err.Error())
 				Logv(env)
 			} else if !env.Silent {
 				Logr(env, out)
@@ -78,6 +78,6 @@ func RunCommand(env Environment, args []string) {
 		}
 	}
 
-	Logr(env, "[Error] Unknown command: "+args[0])
+	Logr(env, "ERROR Unknown command: "+args[0])
 	Logv(env)
 }
