@@ -39,6 +39,7 @@ type Environment struct {
 type Command struct {
 	Name        string
 	Desc        string
+	Usage       string
 	ArgRequired int
 	Function    func(args []string) (error, string)
 }

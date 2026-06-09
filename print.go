@@ -46,6 +46,7 @@ func Logu(env Environment, cmds []Command) {
 		usage := format
 		usage = strings.ReplaceAll(usage, "{name}", cmds[i].Name)
 		usage = strings.ReplaceAll(usage, "{desc}", cmds[i].Desc)
+		usage = strings.ReplaceAll(usage, "{usage}", cmds[i].Usage)
 		usage = strings.ReplaceAll(usage, "{prefix}", env.Prefix)
 		usage = strings.ReplaceAll(usage, "{spacing}", env.Spacing)
 		fmt.Println(usage)
