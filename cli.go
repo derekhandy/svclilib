@@ -64,8 +64,10 @@ func RunCommand(env Environment, args []string) {
 		return
 	}
 
-	Logc(env, args)
-	Logv(env)
+	if !env.REPL {
+		Logc(env, args)
+		Logv(env)
+	}
 
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
