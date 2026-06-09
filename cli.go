@@ -24,7 +24,6 @@ type Environment struct {
 	Glyphs      []string
 	Spacing     string
 	Commands    []Command
-	Silent      bool
 	UsageFormat string
 	REPL        bool
 }
@@ -81,7 +80,7 @@ func RunCommand(env Environment, args []string) {
 				Logv(env)
 				Logu(env, []Command{command})
 				Logv(env)
-			} else if !env.Silent {
+			} else {
 				Logr(env, out)
 				Logv(env)
 			}
