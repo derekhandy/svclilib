@@ -64,9 +64,9 @@ func RunCommand(env Environment, args []string) {
 	for _, command := range env.Commands {
 		if command.Name == args[0] {
 			if len(args) < command.ArgRequired+1 {
-				Logm(env, "Error: Not enough arguments for command "+command.Name)
+				Logr(env, "Error: Not enough arguments for command "+command.Name)
 			} else if err, out := command.Function(args[1:]); err != nil {
-				Logm(env, "Error: "+err.Error())
+				Logr(env, "Error: "+err.Error())
 			} else if !env.Silent {
 				Logr(env, out)
 			}
