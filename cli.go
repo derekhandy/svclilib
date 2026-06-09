@@ -26,6 +26,7 @@ type Environment struct {
 	Commands    []Command
 	Silent      bool
 	UsageFormat string
+	REPL        bool
 }
 
 //
@@ -45,11 +46,15 @@ type Command struct {
 }
 
 func Execute(env Environment, args []string) {
-	Logh(env)
+	if !env.REPL {
+		Logh(env)
+	}
 
 	RunCommand(env, args)
 
-	Logf(env)
+	if !env.REPL {
+		Logf(env)
+	}
 }
 
 func RunCommand(env Environment, args []string) {
