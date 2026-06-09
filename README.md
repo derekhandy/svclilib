@@ -1,7 +1,7 @@
 # svclilib
 
 
-<b> svclilib </b> is a cross-platform Go library for building small command-driven CLI and REPL applications. It provides command registration, argument validation, formatted output helpers, usage printing, and environment-driven console styling. Available for Linux, Windows and MacOS architectures.
+<b> svclilib </b> is a Go library for building small command-driven CLI and REPL applications. It provides command registration, argument validation, formatted output helpers, usage printing, and environment-driven console styling. Available for Linux, Windows and MacOS architectures. Cross-platform support.
 
 Requires <b> Go 1.26 </b> or newer.
 
