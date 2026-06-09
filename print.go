@@ -39,18 +39,43 @@ func Logr(env Environment, out string) {
 	}
 }
 
+var defaultCommand = Command{
+	Name:  "Unknown Name",
+	Desc:  "No description found.",
+	Usage: "No usage found.",
+}
+
 func Logu(env Environment, cmds []Command) {
 	format := env.UsageFormat
 
 	for i := 0; i < len(cmds); i++ {
 		usage := format
-		usage = strings.ReplaceAll(usage, "{name}", cmds[i].Name)
-		usage = strings.ReplaceAll(usage, "{desc}", cmds[i].Desc)
-		usage = strings.ReplaceAll(usage, "{usage}", cmds[i].Usage)
+		usage = ReplaceOrDefault(usage, "{name}", cmds[i].Name)
+		usage = ReplaceOrDefault(usage, "{desc}", cmds[i].Desc)
+		usage = ReplaceOrDefault(usage, "{usage}", cmds[i].Usage)
 		usage = strings.ReplaceAll(usage, "{prefix}", env.Prefix)
 		usage = strings.ReplaceAll(usage, "{spacing}", env.Spacing)
 		fmt.Println(usage)
 	}
+}
+
+func ReplaceOrDefault(str string, match string, replace string) string {
+	if match == "" || str == "" {
+		return str
+	}
+
+	if replace == "" {
+		switch match {
+		case "{name}":
+			replace = defaultCommand.Name
+		case "{desc}":
+			replace = defaultCommand.Desc
+		case "{usage}":
+			replace = defaultCommand.Usage
+		}
+	}
+
+	return strings.ReplaceAll(str, match, replace)
 }
 
 func Logf(env Environment) {
